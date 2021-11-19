@@ -6,5 +6,7 @@ namespace LogicaNegocio
 {
     class LNHorario
     {
+
+
     }
 }
