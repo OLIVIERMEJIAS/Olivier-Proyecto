@@ -4,6 +4,7 @@ using System.Text;
 using AccesoDatos;
 using System.Data;
 using System.Data.SqlClient;
+using Entidades;
 
 namespace LogicaNegocio
 {
@@ -26,6 +27,48 @@ namespace LogicaNegocio
             try
             {
                 return ada.listarPorEstudiante(estId);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool agregarAsistencia(EAsistencia asist)
+        {
+            ADAsistencia ada = new ADAsistencia(CadConexion);
+            try
+            {
+                return ada.agregarAsistencia(asist);
+            }
+            catch ( Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool actualizarAsistencia(EAsistencia asist)
+        {
+            ADAsistencia ada = new ADAsistencia(CadConexion);
+            try
+            {
+                return ada.actualizarAsistencia(asist);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool eliminarAsistencia(EAsistencia asist)
+        {
+            ADAsistencia ada = new ADAsistencia(CadConexion);
+            try
+            {
+                return ada.eliminarAsistencia(asist);
             }
             catch (Exception ex)
             {

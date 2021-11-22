@@ -55,6 +55,7 @@ namespace Olivier_Proyecto
                 MessageBox.Show("Acceso Concedido, Bienvenido(a) al sistema del Colegio");
                 frmFunciones funciones = new frmFunciones();
                 funciones.Show();
+                
             }
             else
                 MessageBox.Show("Acceso denegado, inténtelo de nuevo");

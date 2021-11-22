@@ -42,7 +42,7 @@ namespace Olivier_Proyecto
             this.btnListarAsis = new System.Windows.Forms.Button();
             this.cmbSeccionAsis = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.cmbEstadoAsis = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMateria = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,11 +58,11 @@ namespace Olivier_Proyecto
             this.btnGuardarCalif = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbEstadoCalif = new System.Windows.Forms.ComboBox();
             this.cmbTrim = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtCalif = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNomCalif = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -174,7 +174,7 @@ namespace Olivier_Proyecto
             this.tbpAsistencias.Controls.Add(this.btnListarAsis);
             this.tbpAsistencias.Controls.Add(this.cmbSeccionAsis);
             this.tbpAsistencias.Controls.Add(this.label6);
-            this.tbpAsistencias.Controls.Add(this.cmbEstado);
+            this.tbpAsistencias.Controls.Add(this.cmbEstadoAsis);
             this.tbpAsistencias.Controls.Add(this.label5);
             this.tbpAsistencias.Controls.Add(this.txtMateria);
             this.tbpAsistencias.Controls.Add(this.label4);
@@ -201,6 +201,7 @@ namespace Olivier_Proyecto
             this.btnGuardarAsis.TabIndex = 14;
             this.btnGuardarAsis.Text = "Guardar";
             this.btnGuardarAsis.UseVisualStyleBackColor = true;
+            this.btnGuardarAsis.Click += new System.EventHandler(this.btnGuardarAsis_Click);
             // 
             // btnElimAsis
             // 
@@ -211,6 +212,7 @@ namespace Olivier_Proyecto
             this.btnElimAsis.TabIndex = 13;
             this.btnElimAsis.Text = "Eliminar";
             this.btnElimAsis.UseVisualStyleBackColor = true;
+            this.btnElimAsis.Click += new System.EventHandler(this.btnElimAsis_Click);
             // 
             // btnListarAsis
             // 
@@ -253,18 +255,18 @@ namespace Olivier_Proyecto
             this.label6.TabIndex = 10;
             this.label6.Text = "Sección";
             // 
-            // cmbEstado
+            // cmbEstadoAsis
             // 
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Items.AddRange(new object[] {
+            this.cmbEstadoAsis.FormattingEnabled = true;
+            this.cmbEstadoAsis.Items.AddRange(new object[] {
             "PR",
             "TA",
             "AI",
             "AJ"});
-            this.cmbEstado.Location = new System.Drawing.Point(592, 54);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(201, 33);
-            this.cmbEstado.TabIndex = 9;
+            this.cmbEstadoAsis.Location = new System.Drawing.Point(592, 54);
+            this.cmbEstadoAsis.Name = "cmbEstadoAsis";
+            this.cmbEstadoAsis.Size = new System.Drawing.Size(201, 33);
+            this.cmbEstadoAsis.TabIndex = 9;
             // 
             // label5
             // 
@@ -318,6 +320,7 @@ namespace Olivier_Proyecto
             this.dgvAsistencias.RowTemplate.Height = 25;
             this.dgvAsistencias.Size = new System.Drawing.Size(942, 220);
             this.dgvAsistencias.TabIndex = 3;
+            this.dgvAsistencias.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAsistencias_CellDoubleClick);
             // 
             // btnBuscarAsis
             // 
@@ -353,11 +356,11 @@ namespace Olivier_Proyecto
             this.tbpCalificaciones.Controls.Add(this.btnGuardarCalif);
             this.tbpCalificaciones.Controls.Add(this.comboBox3);
             this.tbpCalificaciones.Controls.Add(this.label12);
-            this.tbpCalificaciones.Controls.Add(this.comboBox2);
+            this.tbpCalificaciones.Controls.Add(this.cmbEstadoCalif);
             this.tbpCalificaciones.Controls.Add(this.cmbTrim);
             this.tbpCalificaciones.Controls.Add(this.label11);
             this.tbpCalificaciones.Controls.Add(this.label10);
-            this.tbpCalificaciones.Controls.Add(this.textBox6);
+            this.tbpCalificaciones.Controls.Add(this.txtCalif);
             this.tbpCalificaciones.Controls.Add(this.label9);
             this.tbpCalificaciones.Controls.Add(this.txtNomCalif);
             this.tbpCalificaciones.Controls.Add(this.label8);
@@ -432,17 +435,17 @@ namespace Olivier_Proyecto
             this.label12.TabIndex = 13;
             this.label12.Text = "Sección";
             // 
-            // comboBox2
+            // cmbEstadoCalif
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbEstadoCalif.FormattingEnabled = true;
+            this.cmbEstadoCalif.Items.AddRange(new object[] {
             "APR",
             "APL",
             "REP"});
-            this.comboBox2.Location = new System.Drawing.Point(561, 46);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 33);
-            this.comboBox2.TabIndex = 12;
+            this.cmbEstadoCalif.Location = new System.Drawing.Point(561, 46);
+            this.cmbEstadoCalif.Name = "cmbEstadoCalif";
+            this.cmbEstadoCalif.Size = new System.Drawing.Size(121, 33);
+            this.cmbEstadoCalif.TabIndex = 12;
             // 
             // cmbTrim
             // 
@@ -474,12 +477,12 @@ namespace Olivier_Proyecto
             this.label10.TabIndex = 8;
             this.label10.Text = "Estado";
             // 
-            // textBox6
+            // txtCalif
             // 
-            this.textBox6.Location = new System.Drawing.Point(443, 45);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(110, 33);
-            this.textBox6.TabIndex = 7;
+            this.txtCalif.Location = new System.Drawing.Point(443, 45);
+            this.txtCalif.Name = "txtCalif";
+            this.txtCalif.Size = new System.Drawing.Size(110, 33);
+            this.txtCalif.TabIndex = 7;
             // 
             // label9
             // 
@@ -579,7 +582,7 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox cmbSeccionAsis;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.ComboBox cmbEstadoAsis;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMateria;
         private System.Windows.Forms.Label label4;
@@ -591,7 +594,7 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtCalif;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNomCalif;
         private System.Windows.Forms.Label label8;
@@ -599,7 +602,7 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.TextBox txtCedCalif;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbEstadoCalif;
         private System.Windows.Forms.ComboBox cmbTrim;
         private System.Windows.Forms.Button btnListarAsis;
         private System.Windows.Forms.Button btnGuardarAsis;

@@ -4,27 +4,36 @@ using System.Text;
 
 namespace Entidades
 {
-    class EAsistencia
+   public class EAsistencia
     {
-        private EEstudiante estudiante { get; set; }
-        private EMateria materia { get; set; }
-        private DateTime FechaHora { get; set; }
-        private string Estado { get; set; }
+        public int EstudianteId { get; set; }
+        public int MateriaId { get; set; }
+        public string FechaHora { get; set; }
+        public string Estado { get; set; }
 
         public EAsistencia()
         {
-            estudiante = new EEstudiante();
-            materia = new EMateria();
-            FechaHora = new DateTime();
+            EstudianteId = 0;
+            MateriaId = 0;
+            FechaHora = "";
             Estado = "";
         }
 
-        public EAsistencia(EEstudiante estu,
-            EMateria mat, DateTime fechHor, string estad)
+        public EAsistencia(int estu,
+            int mat, string estad)
         {
-            estudiante = estu;
-            materia = mat;
-            FechaHora = fechHor;
+            EstudianteId = estu;
+            MateriaId = mat;
+            FechaHora = "";
+            Estado = estad;
+        }
+
+        public EAsistencia(int estu,
+            int mat, string fech, string estad)
+        {
+            EstudianteId = estu;
+            MateriaId = mat;
+            FechaHora = fech;
             Estado = estad;
         }
     }
