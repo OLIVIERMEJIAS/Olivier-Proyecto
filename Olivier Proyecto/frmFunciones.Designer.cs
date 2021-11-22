@@ -37,6 +37,7 @@ namespace Olivier_Proyecto
             this.dgvHor = new System.Windows.Forms.DataGridView();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.tbpAsistencias = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnGuardarAsis = new System.Windows.Forms.Button();
             this.btnElimAsis = new System.Windows.Forms.Button();
             this.btnListarAsis = new System.Windows.Forms.Button();
@@ -169,6 +170,7 @@ namespace Olivier_Proyecto
             // 
             // tbpAsistencias
             // 
+            this.tbpAsistencias.Controls.Add(this.label13);
             this.tbpAsistencias.Controls.Add(this.btnGuardarAsis);
             this.tbpAsistencias.Controls.Add(this.btnElimAsis);
             this.tbpAsistencias.Controls.Add(this.btnListarAsis);
@@ -191,6 +193,16 @@ namespace Olivier_Proyecto
             this.tbpAsistencias.TabIndex = 1;
             this.tbpAsistencias.Text = "ASISTENCIAS";
             this.tbpAsistencias.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(170, 236);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(357, 17);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Doble click sobre la asistencia para modificar o eliminar";
             // 
             // btnGuardarAsis
             // 
@@ -223,6 +235,7 @@ namespace Olivier_Proyecto
             this.btnListarAsis.TabIndex = 12;
             this.btnListarAsis.Text = "Listar";
             this.btnListarAsis.UseVisualStyleBackColor = true;
+            this.btnListarAsis.Click += new System.EventHandler(this.btnListarAsis_Click);
             // 
             // cmbSeccionAsis
             // 
@@ -245,6 +258,7 @@ namespace Olivier_Proyecto
             this.cmbSeccionAsis.Name = "cmbSeccionAsis";
             this.cmbSeccionAsis.Size = new System.Drawing.Size(121, 33);
             this.cmbSeccionAsis.TabIndex = 11;
+            this.cmbSeccionAsis.Text = "7-1";
             // 
             // label6
             // 
@@ -612,5 +626,6 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.Button btnGuardarCalif;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }

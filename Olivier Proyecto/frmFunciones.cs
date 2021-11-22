@@ -14,15 +14,15 @@ namespace Olivier_Proyecto
 {
     public partial class frmFunciones : Form
     {
-        static string CadConexion = "Server = DESKTOP-0MSC0IG;Database=ColegioTecnico;User Id = sa; Password=Progra;";
-        LNEstudiante lne = new LNEstudiante(CadConexion);
-        LNAsistencia lna = new LNAsistencia(CadConexion);
-        LNMateria lnm = new LNMateria(CadConexion);
+        LNEstudiante lne = new LNEstudiante(Config.getCadConexion);
+        LNAsistencia lna = new LNAsistencia(Config.getCadConexion);
+        LNMateria lnm = new LNMateria(Config.getCadConexion);
         EEstudiante est;
         int materiaId;
         int estudianteId;
         int fila = 0;
         bool guardar = true;
+        bool listar = false;
         public frmFunciones()
         {
             InitializeComponent();
@@ -35,6 +35,7 @@ namespace Olivier_Proyecto
 
         private void btnBuscarAsis_Click(object sender, EventArgs e)
         {
+            listar = false;
             est = lne.existeCedUsuario(txtCedAsis.Text);
             estudianteId = est.Id;
             if(est.Nombre == "")
@@ -45,14 +46,15 @@ namespace Olivier_Proyecto
             {
                 txtNomAsis.Text = $"{est.Nombre} {est.Apellido1} {est.Apellido2}";
                 DataTable datos;
-                datos = lna.listarPorEstudiante(est.Id);
+                txtMateria.Text = lnm.accederANombre(EGlobal.profesorId).Nombre;
+                materiaId = lnm.accederANombre(EGlobal.profesorId).MateriaId;
+                datos = lna.listarPorEstudiante(est.Id,materiaId);
                 dgvAsistencias.DataSource = datos;
                 dgvAsistencias.Columns[0].HeaderText = "EstudianteID";
                 dgvAsistencias.Columns[1].HeaderText = "MateriaID";
                 dgvAsistencias.Columns[2].HeaderText = "Fecha de Registro";
                 dgvAsistencias.Columns[3].HeaderText = "Estado";
-                txtMateria.Text = lnm.accederANombre(EGlobal.profesorId).Nombre;
-                materiaId = lnm.accederANombre(EGlobal.profesorId).MateriaId;
+                
                 fila = 0;
             }
         }
@@ -68,6 +70,7 @@ namespace Olivier_Proyecto
                     result = lna.agregarAsistencia(asist);
                     if (result)
                     {
+                        guardar = true;
                         MessageBox.Show("Asistencia agregada con éxito");
                         btnBuscarAsis_Click(sender, e);
                     }
@@ -76,25 +79,31 @@ namespace Olivier_Proyecto
                 }
                 catch (Exception ex)
                 {
-
+                    guardar = true;
                     MessageBox.Show(ex.Message);
                 }
             }
             else
             {
                 bool result;
-                
 
+                string fech = DateTime.Parse(dgvAsistencias[2, fila].Value.ToString()).ToString("yyyy-MM-dd");
                 EAsistencia asist = new EAsistencia(int.Parse(dgvAsistencias[0,fila].Value.ToString()),
-                    int.Parse(dgvAsistencias[1, fila].Value.ToString()), dgvAsistencias[2, fila].Value.ToString(),
-                        dgvAsistencias[3, fila].Value.ToString());
+                    int.Parse(dgvAsistencias[1, fila].Value.ToString()), fech,
+                        cmbEstadoAsis.Text);
                 try
                 {
                     result = lna.actualizarAsistencia(asist);
                     if (result)
                     {
                         MessageBox.Show("Asistencia actualizada con éxito");
-                        btnBuscarAsis_Click(sender, e);
+                        if (!listar)
+                        {
+                            btnBuscarAsis_Click(sender, e);
+                        }else
+                        {
+                            btnListarAsis_Click(sender, e);
+                        }
                         guardar = true;
                     }
                     else
@@ -126,29 +135,61 @@ namespace Olivier_Proyecto
 
         private void btnElimAsis_Click(object sender, EventArgs e)
         {
-            bool result;
-
-
-            EAsistencia asist = new EAsistencia(int.Parse(dgvAsistencias[0, fila].Value.ToString()),
-                int.Parse(dgvAsistencias[1, fila].Value.ToString()), dgvAsistencias[2, fila].Value.ToString(),
-                    dgvAsistencias[3, fila].Value.ToString());
-            try
+            if (!guardar)
             {
-                result = lna.eliminarAsistencia(asist);
-                if (result)
+                bool result;
+
+                string fech = DateTime.Parse(dgvAsistencias[2, fila].Value.ToString()).ToString("yyyy-MM-dd");
+                EAsistencia asist = new EAsistencia(int.Parse(dgvAsistencias[0, fila].Value.ToString()),
+                    int.Parse(dgvAsistencias[1, fila].Value.ToString()), fech,
+                        dgvAsistencias[3, fila].Value.ToString());
+                try
                 {
-                    MessageBox.Show("Asistencia eliminada con éxito");
-                    btnBuscarAsis_Click(sender, e);
+                    result = lna.eliminarAsistencia(asist);
+                    if (result)
+                    {
+                        MessageBox.Show("Asistencia eliminada con éxito");
+                        if (!listar)
+                        {
+                            btnBuscarAsis_Click(sender, e);
+                        }
+                        else
+                        {
+                            btnListarAsis_Click(sender, e);
+                        }
+                        guardar = true;
+                    }
+                    else
+                        MessageBox.Show("No fue posible actualizar la asistencia");
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
                     guardar = true;
                 }
-                else
-                    MessageBox.Show("No fue posible actualizar la asistencia");
             }
-            catch (Exception ex)
+        }
+
+        private void btnListarAsis_Click(object sender, EventArgs e)
+        {
+            listar = true;
+            try
+            {
+                DataTable datos;
+                datos = lna.listarPorSeccion(cmbSeccionAsis.Text);
+                dgvAsistencias.DataSource = datos;
+                dgvAsistencias.Columns[0].HeaderText = "EstudianteID";
+                dgvAsistencias.Columns[1].HeaderText = "MateriaID";
+                dgvAsistencias.Columns[2].HeaderText = "Fecha de Registro";
+                dgvAsistencias.Columns[3].HeaderText = "Estado";
+                
+               
+            }
+            catch (Exception)
             {
 
-                MessageBox.Show(ex.Message);
-                guardar = true;
+                throw;
             }
         }
     }

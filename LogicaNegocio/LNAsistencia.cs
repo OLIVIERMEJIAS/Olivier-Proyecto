@@ -21,12 +21,26 @@ namespace LogicaNegocio
         {
             CadConexion = cad;
         }
-        public DataTable listarPorEstudiante(int estId)
+
+        public DataTable listarPorSeccion(string sec)
+        {
+            try
+            {
+                ADAsistencia ada = new ADAsistencia(CadConexion);
+                return ada.listarPorSeccion(sec);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public DataTable listarPorEstudiante(int estId,int matId)
         {
             ADAsistencia ada = new ADAsistencia(CadConexion);
             try
             {
-                return ada.listarPorEstudiante(estId);
+                return ada.listarPorEstudiante(estId,matId);
             }
             catch (Exception ex)
             {

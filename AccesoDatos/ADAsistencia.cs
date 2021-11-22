@@ -21,14 +21,38 @@ namespace AccesoDatos
             CadConexion = cad;
         }
 
-        public DataTable listarPorEstudiante(int estId)
+        public DataTable listarPorSeccion(string sec)
         {
 
             DataTable datos = new DataTable();
             SqlConnection conexion = new SqlConnection(CadConexion);
-            string sentencia = "Select estudianteId, materiaId, fechaHora, estado from Asistencias" +
+            string sentencia = "Select a.estudianteId, a.materiaId, a.fecha, a.estado from Asistencias a" +
+            " inner join Estudiantes e On  a.estudianteId = e.estudianteId Where";
+            sentencia = $"{sentencia} e.seccion = '{sec}'";
+            SqlDataAdapter adaptador = new SqlDataAdapter(sentencia, conexion);
+
+            try
+            {
+                adaptador.Fill(datos);
+                adaptador.Dispose();
+            }
+            catch (Exception)
+            {
+                adaptador.Dispose();
+                throw new Exception("No se pudo realizar conexión de datos");
+            }
+
+            return datos;
+        }
+
+        public DataTable listarPorEstudiante(int estId,int matId)
+        {
+
+            DataTable datos = new DataTable();
+            SqlConnection conexion = new SqlConnection(CadConexion);
+            string sentencia = "Select estudianteId, materiaId, fecha, estado from Asistencias" +
                 " where estudianteId = ";
-            sentencia = $"{sentencia}{estId}";
+            sentencia = $"{sentencia}{estId} and materiaId = {matId}";
             SqlDataAdapter adaptador = new SqlDataAdapter(sentencia, conexion);
          
             try
@@ -68,7 +92,7 @@ namespace AccesoDatos
             catch (Exception)
             {
                 conexion.Close();
-                throw new Exception("No se pudo realizar conexión de datos");
+                throw new Exception("No se pudo realizar conexión de datos, o la asistencia del día de hoy ya existe");
             }
             finally
             {
@@ -84,12 +108,12 @@ namespace AccesoDatos
             bool result = false;
             SqlConnection conexion = new SqlConnection(CadConexion);
             string sentencia = "Update Asistencias Set estado = @estado " +
-                "Where estudianteId = @estId and materiaId = @matId and fechaHora = @fechaHor";
+                "Where estudianteId = @estId and materiaId = @matId and fecha = @fecha";
             SqlCommand comando = new SqlCommand(sentencia, conexion);
             comando.Parameters.AddWithValue("@estId", asist.EstudianteId);
             comando.Parameters.AddWithValue("@matId", asist.MateriaId);
             comando.Parameters.AddWithValue("@estado", asist.Estado);
-            comando.Parameters.AddWithValue("@fechaHor", asist.FechaHora);
+            comando.Parameters.AddWithValue("@fecha", asist.FechaHora);
 
             try
             {
@@ -119,20 +143,20 @@ namespace AccesoDatos
             bool result = false;
             SqlConnection conexion = new SqlConnection(CadConexion);
             string sentencia = "Delete From Asistencias " +
-                "Where estudianteId = @estId and materiaId = @matId and fechaHora = @fechaHor";
+                "Where estudianteId = @estId and materiaId = @matId and fecha = @fecha";
             SqlCommand comando = new SqlCommand(sentencia, conexion);
             comando.Parameters.AddWithValue("@estId", asist.EstudianteId);
             comando.Parameters.AddWithValue("@matId", asist.MateriaId);
             comando.Parameters.AddWithValue("@estado", asist.Estado);
-            comando.Parameters.AddWithValue("@fechaHor", asist.FechaHora);
-
-            try
-            {
-                conexion.Open();
+            comando.Parameters.AddWithValue("@fecha", asist.FechaHora);
+conexion.Open();
                 if (comando.ExecuteNonQuery() != 0)
                 {
                     result = true;
                 }
+            try
+            {
+                
 
             }
             catch (Exception)
