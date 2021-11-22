@@ -4,21 +4,21 @@ using System.Text;
 
 namespace Entidades
 {
-    abstract class EPersona
+    public class EPersona
     {
-        protected ushort PersonaId { get; set; }
-        protected int NumIdentificacion { get; set; }
-        protected string Nombre { get; set; }
-        protected string Apellido1 { get; set; }
-        protected string Apellido2 { get; set; }
-        protected char Genero { get; set; }
-        protected string Email { get; set; }
-        protected DateTime FechaIngreso { get; set; }
-        protected DateTime FechaNacimiento { get; set; }
-        protected ushort Distrito { get; set; }
-        protected string DirExact { get; set; }
-        protected bool Activo { get; set; }
-        protected bool Borrado { get; set; }
+        public ushort PersonaId { get; set; }
+        public long NumIdentificacion { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public char Genero { get; set; }
+        public string Email { get; set; }
+        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public ushort Distrito { get; set; }
+        public string DirExact { get; set; }
+        public bool Activo { get; set; }
+        public bool Borrado { get; set; }
 
         public EPersona()
         {
@@ -57,7 +57,7 @@ namespace Entidades
             Borrado = bor;
         }
 
-        public abstract void listar();
+        
 
 
 

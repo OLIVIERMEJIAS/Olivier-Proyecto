@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using System.Text;
 using Entidades;
 using AccesoDatos;
+
 namespace LogicaNegocio
 {
-    public class LNProfesor
+    public class LNAsistente
     {
         public string CadConexion { get; set; }
 
-        public LNProfesor()
+        public LNAsistente()
         {
             CadConexion = "";
         }
 
-        public LNProfesor(string cad)
+        public LNAsistente(string cad)
         {
             CadConexion = cad;
         }
 
-        public int accesoUsuario(EProfesor prof)
+        public bool accesoUsuario(EAsistente asis)
         {
-            int result = -1;
-            ADProfesor adp = new ADProfesor(CadConexion);
+            bool result = false;
+            ADAsistente ada = new ADAsistente(CadConexion);
             try
             {
-                result = adp.accesoUsuario(prof);
+                result = ada.accesoUsuario(asis);
             }
             catch (Exception ex)
             {

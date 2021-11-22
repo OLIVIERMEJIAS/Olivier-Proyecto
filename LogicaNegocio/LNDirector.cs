@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Entidades;
 using AccesoDatos;
+using Entidades;
+
 namespace LogicaNegocio
 {
-    public class LNProfesor
+    public class LNDirector
     {
         public string CadConexion { get; set; }
 
-        public LNProfesor()
+        public LNDirector()
         {
             CadConexion = "";
         }
 
-        public LNProfesor(string cad)
+        public LNDirector(string cad)
         {
             CadConexion = cad;
         }
 
-        public int accesoUsuario(EProfesor prof)
+        public bool accesoUsuario(EDirector dir)
         {
-            int result = -1;
-            ADProfesor adp = new ADProfesor(CadConexion);
+            bool result = false;
+            ADDirector add = new ADDirector(CadConexion);
             try
             {
-                result = adp.accesoUsuario(prof);
+                result = add.accesoUsuario(dir);
             }
             catch (Exception ex)
             {

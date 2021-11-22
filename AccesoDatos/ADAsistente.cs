@@ -1,45 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Entidades;
 using System.Data.SqlClient;
 using System.Data;
+using Entidades;
 
 namespace AccesoDatos
 {
-    public class ADProfesor
+    public class ADAsistente
     {
         public string CadConexion { get; set; }
 
-        public ADProfesor()
+        public ADAsistente()
         {
             CadConexion = "";
         }
 
-        public ADProfesor(string cad)
+        public ADAsistente(string cad)
         {
             CadConexion = cad;
         }
-        public int accesoUsuario(EProfesor prof)
+
+        public bool accesoUsuario(EAsistente asis)
         {
-            int result = -1;
-            SqlDataReader reader;
+            bool result = false;
             SqlConnection conexion = new SqlConnection(CadConexion);
-            string sentencia = "Select empleadoId from Empleados where puesto =" +
+            string sentencia = "Select 1 from Empleados where puesto =" +
                 " @puesto and contrasena = @contrasena and nombreUsuario = @nombreU";
             SqlCommand comando = new SqlCommand(sentencia, conexion);
-            comando.Parameters.AddWithValue("@puesto", prof.Puesto);
-            comando.Parameters.AddWithValue("@contrasena", prof.Contrasena);
-            comando.Parameters.AddWithValue("@nombreU", prof.NombreUsuario);
-            
+            comando.Parameters.AddWithValue("@puesto", asis.Puesto);
+            comando.Parameters.AddWithValue("@contrasena", asis.Contrasena);
+            comando.Parameters.AddWithValue("@nombreU", asis.NombreUsuario);
             try
             {
                 conexion.Open();
-                reader = comando.ExecuteReader();
-                if (reader.HasRows)
+                if (comando.ExecuteScalar() != null)
                 {
-                    reader.Read();
-                    result = reader.GetInt16(0);
+                    result = true;
                 }
                 conexion.Close();
             }

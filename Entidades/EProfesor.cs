@@ -4,33 +4,41 @@ using System.Text;
 
 namespace Entidades
 {
-    class EProfesor : EPersona
+    public class EProfesor : EPersona
     {
-        private char Puesto { get; set; }
+        public char Puesto { get; set; }
         
-        private string NombreUsuario { get; set; }
-        private string Contrasena { get; set; }
-        private EMateria Materia { set; get; }
+        public string NombreUsuario { get; set; }
+        public string Contrasena { get; set; }
+        public byte Materia { set; get; }
 
-        public EProfesor()
+        public EProfesor():base()
         {
             Puesto = ' ';
             NombreUsuario = "";
             Contrasena = "";
-            Materia = new EMateria();
+            Materia = 0;
         }
 
         public EProfesor(char puest, string nomU,
-            string contra, EMateria mat)
+            string contra, byte mat):base()
         {
             Puesto = puest;
             NombreUsuario = nomU;
             Contrasena = contra;
             Materia = mat;
         }
+        public EProfesor(char puest, string nomU,
+           string contra) : base()
+        {
+            Puesto = puest;
+            NombreUsuario = nomU;
+            Contrasena = contra;
+            
+        }
 
 
-        public override void listar()
+        public  void listar()
         {
             
         }

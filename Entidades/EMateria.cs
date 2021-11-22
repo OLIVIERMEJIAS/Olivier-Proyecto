@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Entidades
 {
-    class EMateria
+   public class EMateria
     {
-        private byte MateriaId { get; set; }
-        private string Nombre { get; set; }
-        private byte NumLeccionesSeccion { get; set; }
-        private ArrayList Profesores { get; set; }
-        private bool Borrado { get; set; }
+        public byte MateriaId { get; set; }
+        public string Nombre { get; set; }
+        public byte NumLeccionesSeccion { get; set; }
+        public ArrayList Profesores { get; set; }
+        public bool Borrado { get; set; }
 
         public EMateria()
         {

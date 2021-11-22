@@ -1,38 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Entidades;
 using AccesoDatos;
+using Entidades;
+
 namespace LogicaNegocio
 {
-    public class LNProfesor
+    public class LNMateria
     {
         public string CadConexion { get; set; }
 
-        public LNProfesor()
+        public LNMateria()
         {
             CadConexion = "";
         }
 
-        public LNProfesor(string cad)
+        public LNMateria(string cad)
         {
             CadConexion = cad;
         }
 
-        public int accesoUsuario(EProfesor prof)
+        public EMateria accederANombre(int profeId)
         {
-            int result = -1;
-            ADProfesor adp = new ADProfesor(CadConexion);
+            
+            ADMateria adm = new ADMateria(CadConexion);
             try
             {
-                result = adp.accesoUsuario(prof);
+                return adm.accederAMateria(profeId);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            return result;
+            
         }
     }
 }

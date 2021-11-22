@@ -1,38 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Entidades;
 using AccesoDatos;
+using System.Data;
+using System.Data.SqlClient;
+
 namespace LogicaNegocio
 {
-    public class LNProfesor
+    public class LNAsistencia
     {
         public string CadConexion { get; set; }
 
-        public LNProfesor()
+        public LNAsistencia()
         {
             CadConexion = "";
         }
 
-        public LNProfesor(string cad)
+        public LNAsistencia(string cad)
         {
             CadConexion = cad;
         }
-
-        public int accesoUsuario(EProfesor prof)
+        public DataTable listarPorEstudiante(int estId)
         {
-            int result = -1;
-            ADProfesor adp = new ADProfesor(CadConexion);
+            ADAsistencia ada = new ADAsistencia(CadConexion);
             try
             {
-                result = adp.accesoUsuario(prof);
+                return ada.listarPorEstudiante(estId);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            return result;
         }
     }
 }

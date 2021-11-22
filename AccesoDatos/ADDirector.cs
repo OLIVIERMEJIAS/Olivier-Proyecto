@@ -4,42 +4,38 @@ using System.Text;
 using Entidades;
 using System.Data.SqlClient;
 using System.Data;
-
 namespace AccesoDatos
 {
-    public class ADProfesor
+    public class ADDirector
     {
         public string CadConexion { get; set; }
 
-        public ADProfesor()
+        public ADDirector()
         {
             CadConexion = "";
         }
 
-        public ADProfesor(string cad)
+        public ADDirector(string cad)
         {
             CadConexion = cad;
         }
-        public int accesoUsuario(EProfesor prof)
+
+        public bool accesoUsuario(EDirector dir)
         {
-            int result = -1;
-            SqlDataReader reader;
+            bool result = false;
             SqlConnection conexion = new SqlConnection(CadConexion);
-            string sentencia = "Select empleadoId from Empleados where puesto =" +
+            string sentencia = "Select 1 from Empleados where puesto =" +
                 " @puesto and contrasena = @contrasena and nombreUsuario = @nombreU";
             SqlCommand comando = new SqlCommand(sentencia, conexion);
-            comando.Parameters.AddWithValue("@puesto", prof.Puesto);
-            comando.Parameters.AddWithValue("@contrasena", prof.Contrasena);
-            comando.Parameters.AddWithValue("@nombreU", prof.NombreUsuario);
-            
+            comando.Parameters.AddWithValue("@puesto", dir.Puesto);
+            comando.Parameters.AddWithValue("@contrasena", dir.Contrasena);
+            comando.Parameters.AddWithValue("@nombreU", dir.NombreUsuario);
             try
             {
                 conexion.Open();
-                reader = comando.ExecuteReader();
-                if (reader.HasRows)
+                if(comando.ExecuteScalar() != null)
                 {
-                    reader.Read();
-                    result = reader.GetInt16(0);
+                    result = true;
                 }
                 conexion.Close();
             }
@@ -53,6 +49,9 @@ namespace AccesoDatos
                 conexion.Dispose();
                 comando.Dispose();
             }
+
+
+
             return result;
         }
     }

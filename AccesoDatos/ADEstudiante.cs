@@ -7,53 +7,60 @@ using System.Data;
 
 namespace AccesoDatos
 {
-    public class ADProfesor
+   public class ADEstudiante
     {
         public string CadConexion { get; set; }
 
-        public ADProfesor()
+        public ADEstudiante()
         {
             CadConexion = "";
         }
 
-        public ADProfesor(string cad)
+        public ADEstudiante(string cad)
         {
             CadConexion = cad;
         }
-        public int accesoUsuario(EProfesor prof)
+
+        public EEstudiante existeCedUsuario(string ced)
         {
-            int result = -1;
+           
+            long cedula = long.Parse(ced);
             SqlDataReader reader;
+            EEstudiante est = new EEstudiante();
             SqlConnection conexion = new SqlConnection(CadConexion);
-            string sentencia = "Select empleadoId from Empleados where puesto =" +
-                " @puesto and contrasena = @contrasena and nombreUsuario = @nombreU";
+            string sentencia = "Select nombre,apellido1,apellido2,estudianteId from Estudiantes where " +
+                "numIdentificacion = @num";
             SqlCommand comando = new SqlCommand(sentencia, conexion);
-            comando.Parameters.AddWithValue("@puesto", prof.Puesto);
-            comando.Parameters.AddWithValue("@contrasena", prof.Contrasena);
-            comando.Parameters.AddWithValue("@nombreU", prof.NombreUsuario);
+            comando.Parameters.AddWithValue("@num", cedula);
             
             try
             {
                 conexion.Open();
                 reader = comando.ExecuteReader();
-                if (reader.HasRows)
+                if(reader.HasRows)
                 {
                     reader.Read();
-                    result = reader.GetInt16(0);
+                    est.Nombre = reader.GetString(0);
+                    est.Apellido1 = reader.GetString(1);
+                    est.Apellido2 = reader.GetString(2);
+                    est.Id = reader.GetInt16(3);
                 }
                 conexion.Close();
             }
             catch (Exception)
             {
                 conexion.Close();
-                throw new Exception("No se pudo realizar conexión de acceso");
+                throw new Exception("No se pudo realizar búsqueda de estudiante");
             }
             finally
             {
                 conexion.Dispose();
                 comando.Dispose();
             }
-            return result;
+
+
+
+            return est;
         }
     }
 }

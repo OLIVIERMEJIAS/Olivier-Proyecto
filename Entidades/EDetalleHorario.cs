@@ -6,12 +6,12 @@ namespace Entidades
 {
     public class EDetalleHorario
     {
-        private byte HorarioId { get; set; }
-        private ushort ProfesorID { get; set; }
-        private byte AulaID { get; set; }
-        private char Dia { get; set; }
-        private DateTime HoraInicio { get; set; }
-        private DateTime HoraFin { get; set; }
+        public byte HorarioId { get; set; }
+        public ushort ProfesorID { get; set; }
+        public byte AulaID { get; set; }
+        public char Dia { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFin { get; set; }
 
         public EDetalleHorario()
         {
@@ -19,13 +19,13 @@ namespace Entidades
             ProfesorID = 0;
             AulaID = 0;
             Dia = ' ';
-            HoraInicio = new DateTime();
-            HoraFin = new DateTime();
+            HoraInicio = "";
+            HoraFin = "";
         }
 
         public EDetalleHorario(byte horarId,
             byte prof, byte aul, char diaSem,
-            DateTime horI, DateTime horF)
+            string horI, string horF)
         {
             HorarioId = horarId;
             ProfesorID = prof;
