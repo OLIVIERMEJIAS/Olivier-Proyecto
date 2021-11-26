@@ -33,7 +33,7 @@ namespace Olivier_Proyecto
             this.tbpHorarios = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbSecHor = new System.Windows.Forms.ComboBox();
             this.dgvHor = new System.Windows.Forms.DataGridView();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.tbpAsistencias = new System.Windows.Forms.TabPage();
@@ -54,10 +54,12 @@ namespace Olivier_Proyecto
             this.txtCedAsis = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbpCalificaciones = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtMateriaCalif = new System.Windows.Forms.TextBox();
             this.btnListarCalif = new System.Windows.Forms.Button();
             this.btnElimCalif = new System.Windows.Forms.Button();
             this.btnGuardarCalif = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbSecCalif = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbEstadoCalif = new System.Windows.Forms.ComboBox();
             this.cmbTrim = new System.Windows.Forms.ComboBox();
@@ -67,17 +69,18 @@ namespace Olivier_Proyecto
             this.label9 = new System.Windows.Forms.Label();
             this.txtNomCalif = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dgvCalificaciones = new System.Windows.Forms.DataGridView();
             this.txtCedCalif = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnBuscarCedCalif = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tbcFunciones.SuspendLayout();
             this.tbpHorarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHor)).BeginInit();
             this.tbpAsistencias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsistencias)).BeginInit();
             this.tbpCalificaciones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCalificaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcFunciones
@@ -96,7 +99,7 @@ namespace Olivier_Proyecto
             // 
             this.tbpHorarios.Controls.Add(this.button1);
             this.tbpHorarios.Controls.Add(this.label1);
-            this.tbpHorarios.Controls.Add(this.comboBox1);
+            this.tbpHorarios.Controls.Add(this.cmbSecHor);
             this.tbpHorarios.Controls.Add(this.dgvHor);
             this.tbpHorarios.Controls.Add(this.btnGenerar);
             this.tbpHorarios.Location = new System.Drawing.Point(4, 34);
@@ -125,10 +128,10 @@ namespace Olivier_Proyecto
             this.label1.TabIndex = 3;
             this.label1.Text = "Seleccione Sección";
             // 
-            // comboBox1
+            // cmbSecHor
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbSecHor.FormattingEnabled = true;
+            this.cmbSecHor.Items.AddRange(new object[] {
             "7-1",
             "7-2",
             "7-3",
@@ -142,10 +145,10 @@ namespace Olivier_Proyecto
             "10-2",
             "11-1",
             "12-1"});
-            this.comboBox1.Location = new System.Drawing.Point(19, 109);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 33);
-            this.comboBox1.TabIndex = 2;
+            this.cmbSecHor.Location = new System.Drawing.Point(19, 109);
+            this.cmbSecHor.Name = "cmbSecHor";
+            this.cmbSecHor.Size = new System.Drawing.Size(161, 33);
+            this.cmbSecHor.TabIndex = 2;
             // 
             // dgvHor
             // 
@@ -197,12 +200,13 @@ namespace Olivier_Proyecto
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(170, 236);
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(297, 177);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(357, 17);
+            this.label13.Size = new System.Drawing.Size(428, 42);
             this.label13.TabIndex = 15;
-            this.label13.Text = "Doble click sobre la asistencia para modificar o eliminar";
+            this.label13.Text = "Doble click sobre la asistencia para modificar o eliminar, \r\nsi estás en listar, " +
+    "para crear, busca de nuevo";
             // 
             // btnGuardarAsis
             // 
@@ -365,10 +369,13 @@ namespace Olivier_Proyecto
             // 
             // tbpCalificaciones
             // 
+            this.tbpCalificaciones.Controls.Add(this.label15);
+            this.tbpCalificaciones.Controls.Add(this.label14);
+            this.tbpCalificaciones.Controls.Add(this.txtMateriaCalif);
             this.tbpCalificaciones.Controls.Add(this.btnListarCalif);
             this.tbpCalificaciones.Controls.Add(this.btnElimCalif);
             this.tbpCalificaciones.Controls.Add(this.btnGuardarCalif);
-            this.tbpCalificaciones.Controls.Add(this.comboBox3);
+            this.tbpCalificaciones.Controls.Add(this.cmbSecCalif);
             this.tbpCalificaciones.Controls.Add(this.label12);
             this.tbpCalificaciones.Controls.Add(this.cmbEstadoCalif);
             this.tbpCalificaciones.Controls.Add(this.cmbTrim);
@@ -378,9 +385,9 @@ namespace Olivier_Proyecto
             this.tbpCalificaciones.Controls.Add(this.label9);
             this.tbpCalificaciones.Controls.Add(this.txtNomCalif);
             this.tbpCalificaciones.Controls.Add(this.label8);
-            this.tbpCalificaciones.Controls.Add(this.dataGridView3);
+            this.tbpCalificaciones.Controls.Add(this.dgvCalificaciones);
             this.tbpCalificaciones.Controls.Add(this.txtCedCalif);
-            this.tbpCalificaciones.Controls.Add(this.button3);
+            this.tbpCalificaciones.Controls.Add(this.btnBuscarCedCalif);
             this.tbpCalificaciones.Controls.Add(this.label7);
             this.tbpCalificaciones.Location = new System.Drawing.Point(4, 34);
             this.tbpCalificaciones.Name = "tbpCalificaciones";
@@ -389,6 +396,22 @@ namespace Olivier_Proyecto
             this.tbpCalificaciones.TabIndex = 2;
             this.tbpCalificaciones.Text = "CALIFICACIONES";
             this.tbpCalificaciones.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(852, 17);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 25);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Materia";
+            // 
+            // txtMateriaCalif
+            // 
+            this.txtMateriaCalif.Location = new System.Drawing.Point(825, 46);
+            this.txtMateriaCalif.Name = "txtMateriaCalif";
+            this.txtMateriaCalif.Size = new System.Drawing.Size(148, 33);
+            this.txtMateriaCalif.TabIndex = 18;
             // 
             // btnListarCalif
             // 
@@ -399,6 +422,7 @@ namespace Olivier_Proyecto
             this.btnListarCalif.TabIndex = 17;
             this.btnListarCalif.Text = "Listar";
             this.btnListarCalif.UseVisualStyleBackColor = true;
+            this.btnListarCalif.Click += new System.EventHandler(this.btnListarCalif_Click);
             // 
             // btnElimCalif
             // 
@@ -408,6 +432,7 @@ namespace Olivier_Proyecto
             this.btnElimCalif.TabIndex = 16;
             this.btnElimCalif.Text = "Eliminar";
             this.btnElimCalif.UseVisualStyleBackColor = true;
+            this.btnElimCalif.Click += new System.EventHandler(this.btnElimCalif_Click);
             // 
             // btnGuardarCalif
             // 
@@ -417,11 +442,12 @@ namespace Olivier_Proyecto
             this.btnGuardarCalif.TabIndex = 15;
             this.btnGuardarCalif.Text = "Guardar";
             this.btnGuardarCalif.UseVisualStyleBackColor = true;
+            this.btnGuardarCalif.Click += new System.EventHandler(this.btnGuardarCalif_Click);
             // 
-            // comboBox3
+            // cmbSecCalif
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.cmbSecCalif.FormattingEnabled = true;
+            this.cmbSecCalif.Items.AddRange(new object[] {
             "7-1",
             "7-2",
             "7-3",
@@ -435,10 +461,11 @@ namespace Olivier_Proyecto
             "10-2",
             "11-1",
             "12-1"});
-            this.comboBox3.Location = new System.Drawing.Point(19, 189);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 33);
-            this.comboBox3.TabIndex = 14;
+            this.cmbSecCalif.Location = new System.Drawing.Point(19, 189);
+            this.cmbSecCalif.Name = "cmbSecCalif";
+            this.cmbSecCalif.Size = new System.Drawing.Size(121, 33);
+            this.cmbSecCalif.TabIndex = 14;
+            this.cmbSecCalif.Text = "7-1";
             // 
             // label12
             // 
@@ -523,17 +550,18 @@ namespace Olivier_Proyecto
             this.label8.TabIndex = 4;
             this.label8.Text = "Nombre Completo";
             // 
-            // dataGridView3
+            // dgvCalificaciones
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(16, 255);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(937, 238);
-            this.dataGridView3.TabIndex = 3;
+            this.dgvCalificaciones.AllowUserToAddRows = false;
+            this.dgvCalificaciones.AllowUserToDeleteRows = false;
+            this.dgvCalificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCalificaciones.Location = new System.Drawing.Point(16, 255);
+            this.dgvCalificaciones.Name = "dgvCalificaciones";
+            this.dgvCalificaciones.ReadOnly = true;
+            this.dgvCalificaciones.RowTemplate.Height = 25;
+            this.dgvCalificaciones.Size = new System.Drawing.Size(937, 238);
+            this.dgvCalificaciones.TabIndex = 3;
+            this.dgvCalificaciones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCalificaciones_CellDoubleClick);
             // 
             // txtCedCalif
             // 
@@ -542,15 +570,15 @@ namespace Olivier_Proyecto
             this.txtCedCalif.Size = new System.Drawing.Size(164, 33);
             this.txtCedCalif.TabIndex = 2;
             // 
-            // button3
+            // btnBuscarCedCalif
             // 
-            this.button3.Location = new System.Drawing.Point(16, 85);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(164, 34);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Buscar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnBuscarCedCalif_Click);
+            this.btnBuscarCedCalif.Location = new System.Drawing.Point(16, 85);
+            this.btnBuscarCedCalif.Name = "btnBuscarCedCalif";
+            this.btnBuscarCedCalif.Size = new System.Drawing.Size(164, 34);
+            this.btnBuscarCedCalif.TabIndex = 1;
+            this.btnBuscarCedCalif.Text = "Buscar";
+            this.btnBuscarCedCalif.UseVisualStyleBackColor = true;
+            this.btnBuscarCedCalif.Click += new System.EventHandler(this.btnBuscarCedCalif_Click);
             // 
             // label7
             // 
@@ -560,6 +588,17 @@ namespace Olivier_Proyecto
             this.label7.Size = new System.Drawing.Size(138, 25);
             this.label7.TabIndex = 0;
             this.label7.Text = "Ingrese Cédula";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(333, 180);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(549, 42);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "Doble click sobre la asistencia para modificar o eliminar, si estás en listar,\r\n " +
+    "para crear, busca de nuevo";
             // 
             // frmFunciones
             // 
@@ -578,7 +617,7 @@ namespace Olivier_Proyecto
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsistencias)).EndInit();
             this.tbpCalificaciones.ResumeLayout(false);
             this.tbpCalificaciones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCalificaciones)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -593,7 +632,7 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbSecHor;
         private System.Windows.Forms.ComboBox cmbSeccionAsis;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbEstadoAsis;
@@ -612,9 +651,9 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNomCalif;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dgvCalificaciones;
         private System.Windows.Forms.TextBox txtCedCalif;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBuscarCedCalif;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbEstadoCalif;
         private System.Windows.Forms.ComboBox cmbTrim;
@@ -624,8 +663,11 @@ namespace Olivier_Proyecto
         private System.Windows.Forms.Button btnListarCalif;
         private System.Windows.Forms.Button btnElimCalif;
         private System.Windows.Forms.Button btnGuardarCalif;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbSecCalif;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtMateriaCalif;
+        private System.Windows.Forms.Label label15;
     }
 }

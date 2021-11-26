@@ -4,36 +4,46 @@ using System.Text;
 
 namespace Entidades
 {
-    class ECalificacion
+    public class ECalificacion
     {
-        private EEstudiante Estudiante { get; set; }
-        private EMateria Materia { get; set; }
-
-        private DateTime FechaIngreso { get; set; }
-        private string Estado { get; set; }
-        private decimal Calificacion { get; set; }
-        private ETrimestre Trimestre { get; set; }
+        public int EstudianteID { get; set; }
+        public int MateriaID { get; set; }
+        public string FechaIngreso { get; set; }
+        public string Estado { get; set; }
+        public decimal Calificacion { get; set; }
+        public int TrimestreID { get; set; }
 
         public ECalificacion()
         {
-            Estudiante = new EEstudiante();
-            Materia = new EMateria();
-            FechaIngreso = new DateTime();
+            EstudianteID = 0;
+            MateriaID = 0;
+            FechaIngreso = "";
             Estado = "";
             Calificacion = 0;
-            Trimestre = new ETrimestre();
+            TrimestreID = 0;
         }
 
-        public ECalificacion(EEstudiante estu,
-            EMateria mat, DateTime fechaIng, string estad,
-            decimal calif, ETrimestre trim)
+        public ECalificacion(int estu,
+             int mat, decimal calif, string estad
+             , int trim)
         {
-            Estudiante = estu;
-            Materia = mat;
-            FechaIngreso = fechaIng;
+            EstudianteID = estu;
+            MateriaID = mat;
             Estado = estad;
             Calificacion = calif;
-            Trimestre = trim;
+            TrimestreID = trim;
+        }
+
+        public ECalificacion(int estu,
+            int mat, decimal calif,string fech,string estad
+            ,int trim)
+        {
+            EstudianteID = estu;
+            MateriaID = mat;
+            Estado = estad;
+            FechaIngreso = fech;
+            Calificacion = calif;
+            TrimestreID = trim;
         }
     }
 }

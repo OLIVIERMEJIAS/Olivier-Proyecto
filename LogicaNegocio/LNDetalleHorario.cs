@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Entidades;
 using System.Collections;
+using AccesoDatos;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace LogicaNegocio
 {
@@ -20,49 +23,51 @@ namespace LogicaNegocio
             CadCadena = cad;
         }
 
-        public void elegirProfesor(ArrayList detL, byte horId, byte profId, string horaI)
+        public bool agregar(EDetalleHorario det)
         {
-            foreach(EDetalleHorario det in detL)
+            ADDetalleHorario add = new ADDetalleHorario(CadCadena);
+            try
             {
-                if(det.HorarioId == horId)
-                {
+                return add.agregar(det);
+            }
+            catch (Exception)
+            {
 
-                }
+                throw;
             }
         }
 
-        public ArrayList generarHorarios()
+        public bool agregarDetallesHorarrio(ArrayList detalles)
         {
-            byte[] libresXGrupo = new byte[13];
-            byte[] horariosId = new byte[13] { 1, 2 , 3 ,4 , 5 , 6 , 7 , 8, 9 , 10, 11, 12, 13};
-            byte horId = 0;
-            char dia = 'L';
-            byte profe = 0;
-            byte aul = 0;
-            string[] horasInicio = new string[5] { "07:20", "09:00", "10:40", "13:00", "14:40" };
-            string[] horasFin = new string[5] { "08:40", "10:20", "12:00", "14:20", "16:00" };
-            string horI;
-            string horF;
-            ArrayList detalles = new ArrayList();
-            ArrayList detallesL = new ArrayList();
-            ArrayList detallesK = new ArrayList();
-            ArrayList detallesM = new ArrayList();
-            ArrayList detallesJ = new ArrayList();
-            ArrayList detallesV = new ArrayList();
+            ADDetalleHorario add = new ADDetalleHorario(CadCadena);
+            bool result = false;
+            try
+            {
+                foreach (EDetalleHorario item in detalles)
+                {
+                    result = add.agregar(item);
+                }
+            }
+            catch (Exception ex)
+            {
 
-            //verificar profe
-            //ver materia
-            //lecciones profe
-            //lecciones grupo
-            //time libre grupo
+                throw ex;
+            }
+            return result;
+        }
+        public DataTable listarPorSeccion(string sec)
+        {
+            ADDetalleHorario add = new ADDetalleHorario(CadCadena);
 
+            try
+            {
+                return add.listarPorSeccion(sec);
+            }
+            catch (Exception)
+            {
 
-            EDetalleHorario det = new EDetalleHorario(horId, profe, aul, dia, horasInicio[0], horasFin[0]);
-            
-
-
-
-            return detalles;
+                throw;
+            }
         }
 
     }
